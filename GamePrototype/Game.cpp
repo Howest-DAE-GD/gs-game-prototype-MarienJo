@@ -20,10 +20,10 @@ void Game::Initialize( )
 
 
 	
-	m_AmountOfEnemys = 3;
+	m_AmountOfEnemys = 2;
 
 	m_pPlayer = new Player(Point2f{});
-	m_pEnemys.push_back(new Enemys(Point2f{ 300.f, 200.f }, Color4f{ 0, 1,0,1 }));
+//	m_pEnemys.push_back(new Enemys(Point2f{ 300.f, 200.f }, Color4f{ 0, 1,0,1 }));
 	m_pEnemys.push_back(new Enemys(Point2f{ 200.f, 300.f }, Color4f{ 0, 1,0,1 }));
 	m_pEnemys.push_back(new Enemys(Point2f{ 500.f, 400.f }, Color4f{ 0, 1,0,1 }));
 
