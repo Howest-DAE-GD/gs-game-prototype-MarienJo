@@ -1,5 +1,8 @@
 #pragma once
+#include "Enemys.h"
 #include "BaseGame.h"
+#include <vector>
+#include "Player.h"
 class Game : public BaseGame
 {
 public:
@@ -27,4 +30,27 @@ private:
 	void Initialize();
 	void Cleanup( );
 	void ClearBackground( ) const;
+
+	//Functions
+	
+
+	// Classes
+	
+	std::vector<Enemys*> m_pEnemys;
+	Player* m_pPlayer;
+	// Enemys* m_pEnemy;
+
+	// Members
+	Point2f m_PlayerPos{ 40.f, GetViewPort().height / 2 };
+	bool m_PlayerUp{};
+	bool m_PlayerDown{};
+	bool m_PlayerLeft{};
+	bool m_PlayerRight{};
+	float m_SpawnRectSize{ 80.f };
+	Rectf m_Finish{ GetViewPort().width - m_SpawnRectSize, GetViewPort().height / 2 - m_SpawnRectSize / 2, m_SpawnRectSize, m_SpawnRectSize }; 
+	Rectf m_Spawn{ 0, GetViewPort().height / 2 - m_SpawnRectSize / 2 ,m_SpawnRectSize, m_SpawnRectSize }; 
+
+	int m_Level{};
+	int m_LevelTest{};
+	int m_AmountOfEnemys{};
 };
