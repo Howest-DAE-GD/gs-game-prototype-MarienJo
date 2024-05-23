@@ -5,7 +5,7 @@ public:
 	Enemys(Point2f location, Color4f color);
 
 	void DrawEnemys();
-	void UpdateHunt(Point2f playerLocation); //Point2f playerLocation
+	void UpdateHunt(Point2f playerLocation, int level); //Point2f playerLocation
 	bool IsOverlapping(Circlef circle);
 	Point2f GetLocation();
 	void ResetLocations(Point2f newLocation);

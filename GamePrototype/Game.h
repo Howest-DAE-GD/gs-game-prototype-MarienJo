@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemys.h"
+#include "Wall.h"
 #include "BaseGame.h"
 #include <vector>
 #include "Player.h"
@@ -50,7 +51,14 @@ private:
 	Rectf m_Finish{ GetViewPort().width - m_SpawnRectSize, GetViewPort().height / 2 - m_SpawnRectSize / 2, m_SpawnRectSize, m_SpawnRectSize }; 
 	Rectf m_Spawn{ 0, GetViewPort().height / 2 - m_SpawnRectSize / 2 ,m_SpawnRectSize, m_SpawnRectSize }; 
 
+	std::vector<Wall*> m_pWalls;
 	int m_Level{};
 	int m_LevelTest{};
+	int m_LevelToWall{3};
 	int m_AmountOfEnemys{};
+
+	int m_TotalSwaps{3};
+	
+
+
 };

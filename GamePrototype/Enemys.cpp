@@ -5,7 +5,7 @@
 #include <iostream>
 
 Enemys::Enemys(Point2f location, Color4f color)
-	:m_Color{color}, m_Location{ location }, m_Size{17.f}, m_ScanRadius{60.f}, m_TotalRad{ m_Size + m_ScanRadius }
+	:m_Color{color}, m_Location{ location }, m_Size{17.f}, m_ScanRadius{80.f}, m_TotalRad{ m_Size + m_ScanRadius }
 {
 }
 
@@ -16,12 +16,28 @@ void Enemys::DrawEnemys()
 		Point2f{ m_Location.x, m_Location.y + m_Size }, Point2f{ m_Location.x + m_Size, m_Location.y - m_Size }); 
 }
 
-void Enemys::UpdateHunt(Point2f playerLocation) 
+void Enemys::UpdateHunt(Point2f playerLocation, int level) 
 {
-	if (m_Location.x <= playerLocation.x) ++m_Location.x;
-	if (m_Location.x > playerLocation.x) --m_Location.x;
-	if (m_Location.y <= playerLocation.y) ++m_Location.y;
-	if (m_Location.y > playerLocation.y) --m_Location.y;
+	if (m_Location.x <= playerLocation.x)
+	{
+		m_Location.x += 1.2;
+		if (level >= 4) m_Location.x += 1.4;
+	}
+	if (m_Location.x > playerLocation.x)
+	{
+		m_Location.x -= 1.2;
+		if (level >= 4) m_Location.x -= 1.4;
+	}
+	if (m_Location.y <= playerLocation.y)
+	{
+		m_Location.y += 1.2;
+		if (level >= 4) m_Location.y += 1.4;
+	}
+	if (m_Location.y > playerLocation.y)
+	{
+		m_Location.y -= 1.2;
+		if (level >= 4) m_Location.y -= 1.4;
+	}
 
 }
 
