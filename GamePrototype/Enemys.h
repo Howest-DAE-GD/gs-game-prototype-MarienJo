@@ -9,6 +9,7 @@ public:
 	bool IsOverlapping(Circlef circle);
 	Point2f GetLocation();
 	void ResetLocations(Point2f newLocation);
+	void Wander();
 
 private:
 	Point2f m_Location;

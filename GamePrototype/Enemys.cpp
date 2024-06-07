@@ -3,6 +3,8 @@
 #include "utils.h"
 #include <algorithm>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 Enemys::Enemys(Point2f location, Color4f color)
 	:m_Color{color}, m_Location{ location }, m_Size{17.f}, m_ScanRadius{80.f}, m_TotalRad{ m_Size + m_ScanRadius }
@@ -55,5 +57,43 @@ Point2f Enemys::GetLocation()
 void Enemys::ResetLocations(Point2f newLocation)
 {
 	m_Location = newLocation;
+}
+
+void Enemys::Wander()
+{
+	std::chrono::time_point<std::chrono::steady_clock> previous_time = std::chrono::steady_clock::now(); 
+	enum class direction
+	{
+		up,
+		down,
+		left,
+		right
+	};
+	
+	int plan{ rand()% 4};
+	int time{ 5 };
+	
+		auto current_time = std::chrono::steady_clock::now();
+		if (plan == 0 ) //&& (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() >= 1)
+		{
+			m_Location.y += 3;
+			previous_time = current_time;
+		}
+		else if (plan == 1 )//&& (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() >= 1)
+		{
+			m_Location.y -= 3;
+			previous_time = current_time;
+		}
+		else if (plan == 2 )//&& (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() >= 1)
+		{
+			m_Location.x += 3;
+			previous_time = current_time;
+		}
+		else if (plan == 3)//&& (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() >= 1)
+		{
+			m_Location.x -= 3;
+			previous_time = current_time;
+		}
+	
 }
 

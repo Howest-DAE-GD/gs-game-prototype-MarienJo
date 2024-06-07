@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Utils.h"
 #include "Game.h"
+#include <thread>
+#include <chrono>
 
 Game::Game( const Window& window ) 
 	:BaseGame{ window }
@@ -17,6 +19,8 @@ Game::~Game( )
 
 void Game::Initialize( )
 {
+	// std::this_thread::sleep_for(std::chrono::seconds{ 1 });
+
 	std::cout << "-- Controls -- \nLeft and Right: <  >\nUp and Down: ^ and v \nHide from enemy ( total amount of times =" << m_TotalSwaps << "): Space";
 
 	m_AmountOfEnemys = 5;
@@ -28,6 +32,15 @@ void Game::Initialize( )
 	m_pEnemys.push_back(new Enemys(Point2f{ 450.f, 300.f }, Color4f{ 0, 1,0,1 }));
 	m_pEnemys.push_back(new Enemys(Point2f{ 280.f, 100.f }, Color4f{ 0, 1,0,1 }));
 
+	//int printLevel{};
+	//if (m_Level != printLevel)
+	//{
+	//	++printLevel;
+	//	//std::cout << "Level: " << printLevel << std::endl;
+	//}
+	//else {
+	//
+	//}
 }
 
 void Game::Cleanup( )
@@ -63,20 +76,23 @@ void Game::Update( float elapsedSec )
 	if (m_pEnemys.size() != m_AmountOfEnemys)
 	{
 		m_pEnemys.push_back(new Enemys(Point2f{ 500.f, 200.f }, Color4f{ 0, 1,0,1 }));
-		std::cout << "Size: " << m_pEnemys.size() << std::endl;
+		//std::cout << "Size: " << m_pEnemys.size() << std::endl;
 		
 	}
 #pragma endregion
 
 	if (m_pPlayer->GetDeadStatus() == false)
 	{
-		
+		//for{int i{}; elapsedSec; ++i}
 			for (int i{}; i < m_pEnemys.size(); ++i)
 			{
+				
+				m_pEnemys[i]->Wander();
 				if (m_pEnemys[i]->IsOverlapping(Circlef{ m_PlayerPos, 20.f })&& m_pPlayer->GetHidden() == false)
 				{
 					m_pEnemys[i]->UpdateHunt(m_PlayerPos, m_Level);
 				}
+				
 				m_pPlayer->PlayerDead(m_pEnemys[i]->GetLocation());
 			}
 					
@@ -120,7 +136,7 @@ void Game::Update( float elapsedSec )
 			++m_LevelTest;
 			++m_LevelToWall;
 			std::cout << "Level: " << m_Level << std::endl;
-			std::cout << "Almost wall: " << m_LevelToWall << std::endl;
+			// std::cout << "Almost wall: " << m_LevelToWall << std::endl;
 			for (int i{}; i < m_pEnemys.size(); ++i)
 			{
 				m_pPlayer->SetHidden(false);
@@ -173,6 +189,7 @@ void Game::Update( float elapsedSec )
 	{
 		std::cout << "Dead \n";
 	}
+
 	
 }
 
@@ -208,6 +225,8 @@ void Game::Draw( ) const
 		
 		utils::FillEllipse(Point2f{ i * 15 + 10, GetViewPort().height - 20 }, 5, 5);
 	}
+
+	
 }
 
 void Game::ProcessKeyDownEvent( const SDL_KeyboardEvent & e )
