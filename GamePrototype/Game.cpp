@@ -104,25 +104,25 @@ void Game::Update( float elapsedSec )
 		if (pStates[SDL_SCANCODE_RIGHT])
 		{
 			//std::cout << "Right arrow key is down\n";
-			m_PlayerPos.x += 1.1f;
+			m_PlayerPos.x += 2.1f;
 			if (m_Level >= 3) m_PlayerPos.x += 1.5;
 		}
 		if (pStates[SDL_SCANCODE_LEFT])
 		{
 			//std::cout << "Left arrow key is down\n";
-			m_PlayerPos.x -= 1.1f;
+			m_PlayerPos.x -= 2.1f;
 			if (m_Level >= 3) m_PlayerPos.x -= 1.5;
 		}
 		if (pStates[SDL_SCANCODE_UP])
 		{
 			//std::cout << "Up arrow key is down\n";
-			m_PlayerPos.y += 1.1f;
+			m_PlayerPos.y += 2.1f;
 			if (m_Level >= 3) m_PlayerPos.y += 1.5;
 		}
 		if (pStates[SDL_SCANCODE_DOWN])
 		{
 			//std::cout << "Down arrow key is down\n";
-			m_PlayerPos.y -= 1.1f;
+			m_PlayerPos.y -= 2.1f;
 			if (m_Level >= 3) m_PlayerPos.y -= 1.5;	
 		}
 		
@@ -311,7 +311,7 @@ void Game::ProcessMouseUpEvent( const SDL_MouseButtonEvent& e )
 
 void Game::ClearBackground( ) const
 {
-	glClearColor( 0.5f, 0.5f, 0.5f, 1.0f );
+	glClearColor( 0.4f, 0.4f, 0.4f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
 }
 
